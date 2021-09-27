@@ -1,5 +1,6 @@
 #include <iostream>
 #include <filesystem>
+#include <sstream>
 
 //Function to parse text file.
 
@@ -11,6 +12,14 @@ int main()
     std::cout << "- Created By: Anthony N." << "\n";
     std::cout << "- Current location of executable: " << std::filesystem::current_path() << "\n";
     std::cout << "=======================================" << "\n\n";
+    
+    std::cout << "[>] Select directory to restructure:" << "/n";
+    std::string current_input;
+    std::getline(std::cin, current_input);
+    std::cin >> current_input;
+
+    for (const auto& entry : std::filesystem::directory_iterator("./"))
+        std::cout << entry.path() << std::endl;
 }
 
 /*
