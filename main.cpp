@@ -13,13 +13,22 @@ int main()
     std::cout << "- Current location of executable: " << std::filesystem::current_path() << "\n";
     std::cout << "=======================================" << "\n\n";
     
-    std::cout << "[>] Select directory to restructure:" << "/n";
-    std::string current_input;
-    std::getline(std::cin, current_input);
-    std::cin >> current_input;
-
-    for (const auto& entry : std::filesystem::directory_iterator("./"))
-        std::cout << entry.path() << std::endl;
+    std::cout << "[>] Select directory to restructure:" << "\n";
+    std::string user_input;
+    std::getline(std::cin, user_input);
+    std::cout << user_input << "\n";
+    // Verify whether path exist:
+    std::cout << std::filesystem::is_directory(user_input) << "\n";
+    if (std::filesystem::is_directory(user_input) == 0)
+    {
+        std::cout << "[!] Entered user input does not exist." << "\n";
+    }
+    else
+    {
+        // List all files within selected directory
+        for (const auto& entry : std::filesystem::directory_iterator(user_input))
+            std::cout << entry.path() << std::endl;
+    }
 }
 
 /*
