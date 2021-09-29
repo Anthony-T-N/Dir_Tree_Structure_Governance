@@ -19,6 +19,7 @@ int main()
     std::cout << user_input << "\n";
     // Verify whether path exist:
     std::cout << std::filesystem::is_directory(user_input) << "\n";
+
     if (std::filesystem::is_directory(user_input) == 0)
     {
         std::cout << "[!] Entered user input does not exist." << "\n";
@@ -28,7 +29,26 @@ int main()
         // List all files within selected directory
         for (const auto& entry : std::filesystem::directory_iterator(user_input))
             std::cout << entry.path() << std::endl;
+
     }
+    // Loop through text file here:
+    std::ifstream input_file;
+    std::string input_file_line;
+    input_file.open("sample.txt");
+
+    std::ofstream output_file;
+    output_file.open("./Delta.txt");
+
+    while (std::getline(input_file, input_file_line))
+    {
+        std::cout << input_file_line << "\n";
+        output_file << input_file_line << "\n";
+    }
+    for (int i = 0; i <= 10; i++)
+    {
+        std::cout << "123" << "\n";
+    }
+
 }
 
 /*
