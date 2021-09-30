@@ -1,8 +1,20 @@
 #include <iostream>
 #include <filesystem>
 #include <sstream>
+#include <fstream>
 
 //Function to parse text file.
+void temp()
+{
+    std::ifstream input_file;
+    std::string input_file_line;
+    input_file.open("sample.txt");
+    while (std::getline(input_file, input_file_line))
+    {
+        std::cout << input_file_line << "\n";
+        // Loop through text file and determine whether there are any changes between it and existing directory.
+    }
+}
 
 int main()
 {
@@ -12,7 +24,7 @@ int main()
     std::cout << "- Created By: Anthony N." << "\n";
     std::cout << "- Current location of executable: " << std::filesystem::current_path() << "\n";
     std::cout << "=======================================" << "\n\n";
-    
+
     std::cout << "[>] Select directory to restructure:" << "\n";
     std::string user_input;
     std::getline(std::cin, user_input);
@@ -44,19 +56,31 @@ int main()
         std::cout << input_file_line << "\n";
         output_file << input_file_line << "\n";
     }
-    for (int i = 0; i <= 10; i++)
-    {
-        std::cout << "123" << "\n";
-    }
-
 }
 
 /*
 Plan & Design
-
 - Console application takes text file describing file/directory structure.
 - Parses text file and begins moving/structuring target directory in accordance to text file.
 - Takes measures to ensure files listed in text file exist in target directory.
 - Potential undo function to undo moved files.
+
+Example:
+
+Existing Directory:
+- Folder12
+-- File1.txt
+-- File45.txt
+-- video1.mov
+-- pic.png
+
+Transfer to text file and make modifications:
+- Folder12
+-- File1.txt
+-- File999.txt
+-- 
+-- pic.png
+
+Existing Directory will now be restructured in accordance to text file
 
 */
