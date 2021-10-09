@@ -3,16 +3,21 @@
 #include <sstream>
 #include <fstream>
 
+std::vector<std::string> dir_vector;
+
 //Function to parse text file.
 void temp()
 {
     std::ifstream input_file;
     std::string input_file_line;
     input_file.open("sample.txt");
+    int i = 0;
     while (std::getline(input_file, input_file_line))
     {
         std::cout << input_file_line << "\n";
-        // Loop through text file and determine whether there are any changes between it and existing directory.
+        // Loop through text file and determine whether there are any changes between it and the existing directory.
+        std::cout << dir_vector[i] << "\n";
+        i++;
     }
 }
 
@@ -40,7 +45,9 @@ int main()
     {
         // List all files within selected directory
         for (const auto& entry : std::filesystem::directory_iterator(user_input))
+            dir_vector.push_back(entry.path());
             std::cout << entry.path() << std::endl;
+            
 
     }
     // Loop through text file here:
